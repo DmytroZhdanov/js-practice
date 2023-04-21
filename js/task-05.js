@@ -1,9 +1,9 @@
 const input = document.querySelector("#name-input");
 const output = document.querySelector("#name-output");
 
-input.addEventListener("input", ammendName);
+input.addEventListener("input", onInputName);
 
-function ammendName(event) {
+function onInputName(event) {
   output.textContent = event.currentTarget.value.trim();
 
   if (event.currentTarget.value.trim() === "") {

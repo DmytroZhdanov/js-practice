@@ -3,15 +3,15 @@ const value = document.querySelector("#value");
 const decrementBtn = document.querySelector('button[data-action="decrement"]');
 const incrementBtn = document.querySelector('button[data-action="increment"]');
 
-decrementBtn.addEventListener("click", decreaseCounter);
-incrementBtn.addEventListener("click", increaseCounter);
+decrementBtn.addEventListener("click", onDecrementBtnClick);
+incrementBtn.addEventListener("click", onIncrementBtnClick);
 
-function decreaseCounter() {
+function onDecrementBtnClick() {
   counterValue -= 1;
   value.textContent = counterValue;
 }
 
-function increaseCounter() {
+function onIncrementBtnClick() {
   counterValue += 1;
   value.textContent = counterValue;
 }
