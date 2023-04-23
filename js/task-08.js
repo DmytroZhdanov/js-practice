@@ -13,9 +13,11 @@ function onFormSubmit(event) {
     return alert("Please fill in all the fields!");
   }
 
-  console.log({
+  const userData = {
     email: email.value,
     password: password.value,
-  });
+  };
+
+  console.log(userData);
   event.currentTarget.reset();
 }
