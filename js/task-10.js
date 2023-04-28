@@ -10,33 +10,38 @@ const refs = {
   destroyBtn: document.querySelector("button[data-destroy]"),
   boxes: document.querySelector("#boxes"),
 };
-let array = [];
 
 refs.createBtn.addEventListener("click", onCreateBtnClick);
 refs.destroyBtn.addEventListener("click", onDestroyBtnClick);
 
 function onCreateBtnClick() {
+  let array = [];
   const numberOfBoxes = +refs.input.value;
+  const minimumValue = +refs.input.min;
+  const maxValue = +refs.input.max;
+  const stepValue = +refs.input.step;
 
-  for (let i = 0; i < numberOfBoxes; i += 1) {
+  if (numberOfBoxes < minimumValue || numberOfBoxes > maxValue) {
+    return;
+  }
+  for (let i = 0; i < numberOfBoxes; i += stepValue) {
     array.push(i);
   }
 
-  const boxesArray = array.map((box, index) => {
-    box = `<div style="width: ${30 + index * 10}px; height: ${
-      30 + index * 10
-    }px; background-color: ${getRandomHexColor()};"></div>`;
-    return box;
-  });
-  const markup =
-    boxesArray.length > numberOfBoxes
-      ? boxesArray.slice(boxesArray.length - numberOfBoxes, boxesArray.length).join("")
-      : boxesArray.join("");
-  
+  const markup = array
+    .map((box, index) => {
+      box = `<div style="width: ${30 + index * 10}px; height: ${
+        30 + index * 10
+      }px; background-color: ${getRandomHexColor()};"></div>`;
+      return box;
+    })
+    .join("");
+
   refs.boxes.insertAdjacentHTML("beforeend", markup);
+  array = [];
 }
 
 function onDestroyBtnClick() {
   refs.boxes.innerHTML = "";
-  array = [];
+  refs.input.value = "";
 }
